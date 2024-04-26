@@ -11,7 +11,7 @@ import os
 # 将%形式的利率转化为float
 def rate_change(rate):
     if "%" == rate.replace(" ","").replace("\t","").replace("\r","").replace("\n","")[-1]:
-        return float(rate.replace(" ","").replace("\t","").replace("\r","").replace("\n","").replace("%","")/100.0
+        return float(rate.replace(" ","").replace("\t","").replace("\r","").replace("\n","").replace("%",""))/100.0
     else:
         return float(rate)
 
