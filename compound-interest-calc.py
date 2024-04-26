@@ -11,11 +11,11 @@ import os
 # 将%形式的利率转化为float
 def rate_change(rate):
     if "%" == rate.replace(" ","").replace("\t","").replace("\r","").replace("\n","")[-1]:
-        return float(rate.replace(" ","").replace("\t","").replace("\r","").replace("\n","")[-2])/100.0
+        return float(rate.replace(" ","").replace("\t","").replace("\r","").replace("\n","").replace("%","")/100.0
     else:
         return float(rate)
 
-# 趸交Bulk/One-time deposit
+# 趸存Bulk/One-time deposit
 def bulk(principal, rate, years):
     return float(principal)*pow(1+float(rate),float(years))
     
