@@ -4,7 +4,7 @@
 这是一个复利计算器。能够帮助大家方便、快速地计算不同储蓄方案在复利情况下n年后的收益。
 This is a compound interest calculator. It can help everyone conveniently and quickly calculate the returns of different savings plans after n years under compound interest.
 Github: https://github.com/Chiaki2333/compound-interest-calc
-version: 1.0
+version: 1.1
 '''
 import os
 
@@ -21,11 +21,13 @@ def bulk(principal, rate, years):
     
 # 月存/Monthly deposit
 def monthly_deposit_(init_principal, monthly_deposit, rate, months):
-    months = int(months)
+    #months = int(months)
     money = init_principal
-    for i in range(months):
+    for i in range(int(months)):
         money += float(monthly_deposit)
         money += money*rate/12
+    if float(months)-int(months) > 0:
+        money = bulk(money, rate, (float(months)-int(months))*12)
     return money
     
 
@@ -46,7 +48,7 @@ if __name__== "__main__":
         "  ******   ******",
         "  ***************",
         "    ***********",
-        "      *******\tVersion:1.0",
+        "      *******\tVersion:1.1",
         "        ***\tGithub:https://github.com/Chiaki2333/compound-interest-calc"
     ]))
     print("-"*50)
@@ -81,8 +83,8 @@ if __name__== "__main__":
         years = -1
         while years<0:
             years = float(input("[*]how many years do you want to save:"))
-        money = monthly_deposit_(init_principal, monthly_deposit, rate, int(years*12))
-        print("[!]You will get %.2f after %.2f year(s)." % (money, int(years*12)/12.0))
+        money = monthly_deposit_(init_principal, monthly_deposit, rate, years*12)
+        print("[!]You will get %.2f after %.2f year(s)." % (money, years))
     elif choice == 3:
         print("You choose [3]Annual deposit")
         print("Please input your init principal, annual deposit, the deposit interest rate and how many years do you want to save.")
